@@ -1,0 +1,14 @@
+import axios from 'axios'
+import { useQuery } from 'react-query'
+
+import { queryCache } from '../../components/App'
+
+const fetchPosts = () => axios.get('/api/posts').then((res) => res.data)
+
+export const prefetchPost = (postId) => {
+  queryCache.prefetchQuery(['posts', String(postId)], fetchPosts, {
+    staleTime: 5000,
+  })
+}
+
+export const usePosts = () => useQuery('posts', fetchPosts)
