@@ -1,40 +1,40 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ReactQueryDevtools } from 'react-query-devtools'
-import { hydrate, dehydrate } from 'react-query/hydration'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ReactQueryDevtools } from "react-query-devtools";
+import { hydrate, dehydrate } from "react-query/hydration";
 
-import { Wrapper, Main } from './components/styled'
-import Sidebar from './components/Sidebar'
-import GlobalLoader from './components/GlobalLoader'
+import { Wrapper, Main } from "./components/styled";
+import Sidebar from "./components/Sidebar";
+import GlobalLoader from "./components/GlobalLoader";
 
-import { AdminPosts } from './screens/admin'
-import { AdminPost } from './screens/admin/Post'
-import { BlogPosts } from './screens/blog'
-import { BlogPost } from './screens/blog/Post'
-import { queryCache } from './components/App'
+import { AdminPosts } from "./screens/admin";
+import { AdminPost } from "./screens/admin/Post";
+import { BlogPosts } from "./screens/blog";
+import { BlogPost } from "./screens/blog/Post";
+import { queryCache } from "./components/App";
 
-function cacheSync() {
-  if (typeof localStorage !== 'undefined') {
-    let cache = localStorage.getItem('queryCache_1')
+const cacheSync = () => {
+  if (typeof localStorage !== "undefined") {
+    let cache = localStorage.getItem("queryCache_1");
     if (cache) {
-      hydrate(queryCache, JSON.parse(cache))
+      hydrate(queryCache, JSON.parse(cache));
     }
 
     queryCache.subscribe((cache) => {
-      localStorage.setItem('queryCache_1', JSON.stringify(dehydrate(cache)))
-    })
+      localStorage.setItem("queryCache_1", JSON.stringify(dehydrate(cache)));
+    });
   }
-}
+};
 
-cacheSync()
+cacheSync();
 
-function SupressHydrationWarning({ children }) {
+const SupressHydrationWarning = ({ children }) => {
   return (
     <div suppressHydrationWarning>
-      {typeof document === 'undefined' ? null : children}
+      {typeof document === "undefined" ? null : children}
     </div>
-  )
-}
+  );
+};
 
 export const Root = () => {
   return (
@@ -63,5 +63,5 @@ export const Root = () => {
         <ReactQueryDevtools />
       </BrowserRouter>
     </SupressHydrationWarning>
-  )
-}
+  );
+};
