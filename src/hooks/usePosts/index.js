@@ -1,14 +1,15 @@
-import axios from 'axios'
-import { useQuery } from 'react-query'
+import axios from "axios";
+import { useQuery } from "react-query";
 
-import { queryCache } from '../../components/App'
+import { queryCache } from "../../components/App";
 
-const fetchPosts = () => axios.get('/api/posts').then((res) => res.data)
+const fetchPosts = () =>
+  axios.get("http://localhost:3000/api/posts").then((res) => res.data);
 
-export const prefetchPost = (postId) => {
-  queryCache.prefetchQuery(['posts', String(postId)], fetchPosts, {
+export const prefetchPosts = (postId) => {
+  queryCache.prefetchQuery(["posts", String(postId)], fetchPosts, {
     staleTime: 5000,
-  })
-}
+  });
+};
 
-export const usePosts = () => useQuery('posts', fetchPosts)
+export const usePosts = () => useQuery("posts", fetchPosts);
