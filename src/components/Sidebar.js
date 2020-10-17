@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { SidebarStyles } from './styled'
+import { SidebarStyles } from "./styled";
+import { prefetchPosts } from "../hooks";
 
 export default function Sidebar() {
   return (
@@ -10,14 +11,14 @@ export default function Sidebar() {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li onMouseEnter={() => prefetchPosts()}>
           <Link to="/blog">Blog</Link>
         </li>
         <hr />
-        <li>
+        <li onMouseEnter={() => prefetchPosts()}>
           <Link to="/admin">Admin</Link>
         </li>
       </ul>
     </SidebarStyles>
-  )
+  );
 }
