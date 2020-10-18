@@ -1,6 +1,8 @@
 import MyApp from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
+import normalize from 'styled-normalize'
 
 import { ReactQueryCacheProvider, QueryCache } from 'react-query'
 import { Hydrate } from 'react-query/hydration'
@@ -8,9 +10,6 @@ import { Hydrate } from 'react-query/hydration'
 import { queryHydrate } from './queryHydrate'
 
 export const queryCache = new QueryCache()
-
-import { createGlobalStyle } from 'styled-components'
-import normalize from 'styled-normalize'
 
 const GlobalStyles = createGlobalStyle`
   ${normalize};
