@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { SidebarStyles } from "./styled";
-import { prefetchPosts } from "../hooks";
+import { SidebarStyles } from './styled'
+import { prefetchPosts } from '../hooks'
 
 export default function Sidebar() {
   return (
@@ -20,5 +20,5 @@ export default function Sidebar() {
         </li>
       </ul>
     </SidebarStyles>
-  );
+  )
 }
