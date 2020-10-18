@@ -4,7 +4,10 @@ import { queryCache } from '../../components/App'
 
 export const useCreatePost = () => {
   return useMutation(
-    (values) => axios.post('/api/posts', values).then((res) => res.data),
+    (values) =>
+      axios
+        .post('http://localhost:3000/api/posts', values)
+        .then((res) => res.data),
     {
       onMutate: (values) => {
         queryCache.cancelQueries('posts')
