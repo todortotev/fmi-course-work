@@ -4,7 +4,6 @@ import { ImSpinner2 } from 'react-icons/im'
 
 export const Wrapper = styled.div`
   display: flex;
-  height: 96vh;
 `
 
 export const SidebarStyles = styled.div`

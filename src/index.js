@@ -49,6 +49,11 @@ export const Root = () => {
                 element={
                   <>
                     <h1>Welcome!</h1>
+                    <p>My name is Todor Totev</p>
+                    <p>
+                      This is my course work for the Web Programming course in
+                      Facultry of Mathematics and Informatics
+                    </p>
                   </>
                 }
               />

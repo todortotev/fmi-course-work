@@ -14,8 +14,10 @@ export const queryCache = new QueryCache()
 const GlobalStyles = createGlobalStyle`
   ${normalize};
   html, body, body, [data-reactroot] {
+    height: calc(100vh - 70px);
     min-height: 100%;
     max-width: 100%;
+    overflow-y: scroll !important;
   }
 
   html, body {
@@ -36,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
   }
+  overflow: visible;
 `
 
 class App extends MyApp {
