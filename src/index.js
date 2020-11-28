@@ -52,7 +52,7 @@ export const Root = () => {
                     <p>My name is Todor Totev</p>
                     <p>
                       This is my course work for the Web Programming course in
-                      Facultry of Mathematics and Informatics
+                      Faculty of Mathematics and Informatics
                     </p>
                   </>
                 }
