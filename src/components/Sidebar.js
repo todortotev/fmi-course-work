@@ -9,7 +9,6 @@ export default function Sidebar() {
   const location = useLocation()
   return (
     <SidebarStyles>
-      {console.log(location)}
       <ListStyles>
         <li>
           <Link to="/">Home</Link>
