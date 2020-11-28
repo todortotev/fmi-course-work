@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import { queryCache } from '../../components/App'
 
 export const fetchPost = (_, postId) =>
-  axios.get(`http://localhost:3000/api/posts/${postId}`).then((res) => res.data)
+  axios.get(`/api/posts/${postId}`).then((res) => res.data)
 
 export const prefetchPost = (postId) => {
   queryCache.prefetchQuery(['posts', String(postId)], fetchPost, {

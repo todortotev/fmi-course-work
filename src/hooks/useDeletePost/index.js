@@ -5,10 +5,7 @@ import { queryCache } from '../../components/App'
 
 export const useDeletePost = () => {
   return useMutation(
-    (postId) =>
-      axios
-        .delete(`http://localhost:3000/api/posts/${postId}`)
-        .then((res) => res.data),
+    (postId) => axios.delete(`/api/posts/${postId}`).then((res) => res.data),
     {
       onError: (error, variables, rollback) => {
         rollback && rollback()
