@@ -1,7 +1,34 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { PostStyles } from '../../../components/styled'
 import { usePosts, prefetchPost } from '../../../hooks'
+
+export const PostStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgba(130, 130, 130, 0.3);
+  padding: 1rem;
+  color: inherit;
+  width: 700px;
+  margin: 1rem 1rem 1rem 0;
+
+  @media (max-width: 968px) {
+    width: 100px;
+  }
+
+  :hover {
+    text-decoration: none;
+    h3 {
+      text-decoration: underline;
+    }
+  }
+`
+
+const PostListStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`
 
 export const PostList = () => {
   const postsQuery = usePosts()
@@ -10,33 +37,29 @@ export const PostList = () => {
     <div>
       <h1>Blog</h1>
 
-      <div
-        css={`
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 1rem;
-        `}
-      >
+      <PostListStyles>
         {postsQuery.isLoading ? (
           <span>Loading...</span>
         ) : postsQuery.isError ? (
           postsQuery.error.message
         ) : (
           postsQuery.data.map((post) => (
-            <PostStyles
-              as={Link}
-              to={`./${post.id}`}
-              key={post.id}
-              onMouseEnter={() => {
-                prefetchPost(post.id)
-              }}
-            >
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-            </PostStyles>
+            <>
+              <PostStyles
+                as={Link}
+                to={`./${post.id}`}
+                key={post.id}
+                onMouseEnter={() => {
+                  prefetchPost(post.id)
+                }}
+              >
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+              </PostStyles>
+            </>
           ))
         )}
-      </div>
+      </PostListStyles>
     </div>
   )
 }

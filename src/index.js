@@ -1,9 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import { hydrate, dehydrate } from 'react-query/hydration'
 
-import { Wrapper, Main } from './components/styled'
 import Sidebar from './components/Sidebar'
 import GlobalLoader from './components/GlobalLoader'
 
@@ -70,3 +70,12 @@ export const Root = () => {
     </SupressHydrationWarning>
   )
 }
+
+export const Wrapper = styled.div`
+  display: flex;
+`
+
+export const Main = styled.div`
+  flex: 1;
+  padding: 1rem;
+`

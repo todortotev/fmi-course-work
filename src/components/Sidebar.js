@@ -1,9 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-
-import { SidebarStyles } from './styled'
 import { prefetchPosts } from '../hooks'
+
+export const SidebarStyles = styled.div`
+  width: 175px;
+  border-right: 1px solid black;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    width: 80px;
+    font-size: 15px;
+  }
+`
 
 export default function Sidebar() {
   const location = useLocation()

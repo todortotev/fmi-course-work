@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { usePosts } from '../../../hooks'
 import { prefetchPost } from '../../../hooks/usePost'
-import { Loader } from '../../../components/styled'
+import { Loader } from '../../../components/GlobalLoader'
 
 export const PostList = () => {
   const postsQuery = usePosts()

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Loader } from '../../../components/GlobalLoader'
 
 import { usePost, useSavePost, useDeletePost } from '../../../hooks'
 
 import PostForm from '../../../components/PostForm'
-import { Loader } from '../../../components/styled'
 
 export const AdminPost = () => {
   const { postId } = useParams()
