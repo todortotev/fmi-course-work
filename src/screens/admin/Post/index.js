@@ -35,7 +35,7 @@ export const AdminPost = () => {
           </p>
           <PostForm
             initialValues={postQuery.data}
-            handleSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             submitText={
               savePostInfo.isLoading
                 ? 'Saving...'
