@@ -18,14 +18,9 @@ export const BlogPost = () => {
         <div>
           <h2>{postQuery.data.title}</h2>
           <p>{postQuery.data.body}</p>
-          <Image src={resizeImage(postQuery.data.image, 500, 150)}></Image>
+          <img src={resizeImage(postQuery.data.image, 700, 400)}></img>
         </div>
       )}
     </>
   )
 }
-
-const Image = styled.img`
-  float: left;
-  left: 0;
-`
