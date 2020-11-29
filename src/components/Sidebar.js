@@ -26,11 +26,11 @@ export default function Sidebar() {
         <li onMouseEnter={() => prefetchPosts()}>
           <Link to="/blog">Blog</Link>
         </li>
-        {location.pathname === '/blog' && <hr />}
+        {location.pathname.startsWith('/blog') && <hr />}
         <li onMouseEnter={() => prefetchPosts()}>
           <Link to="/admin">Admin</Link>
         </li>
-        {location.pathname === '/admin' && <hr />}
+        {location.pathname.startsWith('/admin') && <hr />}
       </ListStyles>
     </SidebarStyles>
   )

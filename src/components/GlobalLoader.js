@@ -1,5 +1,7 @@
 import React from 'react'
 import { useIsFetching } from 'react-query'
+import { keyframes } from 'styled-components'
+import { ImSpinner2 } from 'react-icons/im'
 
 export default function GlobalLoader() {
   const isFetching = useIsFetching()
@@ -19,9 +21,6 @@ export default function GlobalLoader() {
     />
   )
 }
-
-import { keyframes } from 'styled-components'
-import { ImSpinner2 } from 'react-icons/im'
 
 const rotate = keyframes`
   from {

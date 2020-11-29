@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useIsFetching } from 'react-query'
 
 const defaultFormValues = {
   title: '',
   body: '',
+  image: '',
 }
 
 export default function PostForm({
@@ -13,6 +15,7 @@ export default function PostForm({
   clearOnSubmit,
 }) {
   const [values, setValues] = useState(initialValues)
+  const isFetching = useIsFetching()
 
   const setValue = (field, value) =>
     setValues((old) => ({ ...old, [field]: value }))
@@ -28,6 +31,27 @@ export default function PostForm({
   useEffect(() => {
     setValues(initialValues)
   }, [initialValues])
+
+  const uploadFile = async (e) => {
+    const files = e.target.files
+    if (files.length > 0) {
+      const data = new FormData()
+      data.append('file', files[0])
+      data.append('upload_preset', 'sickfits')
+
+      const res = await fetch(
+        'https://api.cloudinary.com/v1_1/totev94/image/upload',
+        {
+          method: 'POST',
+          body: data,
+        }
+      )
+      const file = await res.json(res)
+      setValues((old) => ({ ...old, image: file.secure_url }))
+    } else {
+      setValues((old) => ({ ...old, image: '' }))
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,8 +77,27 @@ export default function PostForm({
           rows="10"
         />
       </div>
+      <div>
+        {values.image && (
+          <img
+            width="200px"
+            height="200px"
+            src={values.image}
+            alt="Upload Preview"
+          ></img>
+        )}
+        <input
+          type="file"
+          id="file"
+          name="file"
+          placeholder="Upload an image"
+          onChange={uploadFile}
+        />
+      </div>
       <br />
-      <button type="submit">{submitText}</button>
+      <button disabled={isFetching} type="submit">
+        {submitText}
+      </button>
     </form>
   )
 }
