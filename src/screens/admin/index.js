@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { CreatePost } from './CreatePost'
 import { PostList } from './PostList'
 

@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { usePosts, prefetchPost } from '../../../hooks'
 
+const resizeImage = (url) =>
+  url.substr(0, url.indexOf('/upload/') + 8) +
+  `w_400,h_200,c_scale` +
+  url.substring(url.indexOf('/sickfits/'))
+
 export const PostList = () => {
   const postsQuery = usePosts()
 
@@ -10,7 +15,7 @@ export const PostList = () => {
     <div>
       <h1>Blog</h1>
 
-      <PostListStyles>
+      <Container>
         {postsQuery.isLoading ? (
           <span>Loading...</span>
         ) : postsQuery.isError ? (
@@ -18,7 +23,7 @@ export const PostList = () => {
         ) : (
           postsQuery.data.map((post) => (
             <>
-              <PostStyles
+              <Card
                 as={Link}
                 to={`./${post.id}`}
                 key={post.id}
@@ -26,31 +31,50 @@ export const PostList = () => {
                   prefetchPost(post.id)
                 }}
               >
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-              </PostStyles>
+                <ImageBox>
+                  <img src={resizeImage(post.image)} />
+                </ImageBox>
+                <Content>
+                  <h2>{post.title}</h2>
+                  <p>{post.body}</p>
+                </Content>
+              </Card>
             </>
           ))
         )}
-      </PostListStyles>
+      </Container>
     </div>
   )
 }
 
-export const PostStyles = styled.div`
+const Container = styled.div`
+  position: relative;
   display: flex;
-  flex-direction: column;
-  border: solid 1px rgba(130, 130, 130, 0.3);
-  padding: 1rem;
-  color: inherit;
-  width: 700px;
-  margin: 1rem 1rem 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 1100px;
 
-  @media (max-width: 968px) {
-    width: 300px;
-    height: 300px;
+  @media (max-width: 1024px) {
+    width: 1000px;
   }
 
+  @media (max-width: 991px) {
+    width: 250px;
+    flex-direction: column;
+  }
+`
+const Card = styled.div`
+  position: relative;
+  max-width: 450px;
+  border: solid 1px rgba(130, 130, 130, 0.3);
+  margin: 10px;
+  padding: 15px;
+
+  @media (max-width: 991px) {
+    max-width: 250px;
+    flex-direction: column;
+  }
   :hover {
     text-decoration: none;
     h3 {
@@ -58,9 +82,5 @@ export const PostStyles = styled.div`
     }
   }
 `
-
-const PostListStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-`
+const ImageBox = styled.div``
+const Content = styled.div``

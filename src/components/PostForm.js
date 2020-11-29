@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { useIsFetching } from 'react-query'
 
@@ -79,12 +80,7 @@ export default function PostForm({
       </div>
       <div>
         {values.image && (
-          <img
-            width="200px"
-            height="200px"
-            src={values.image}
-            alt="Upload Preview"
-          ></img>
+          <PreviewImage src={values.image} alt="Upload Preview"></PreviewImage>
         )}
         <input
           type="file"
@@ -101,3 +97,13 @@ export default function PostForm({
     </form>
   )
 }
+
+const PreviewImage = styled.img`
+  width: 200px;
+  height: 200px;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+`
