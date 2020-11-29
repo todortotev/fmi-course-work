@@ -1,12 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { usePost } from '../../../hooks'
 import styled from 'styled-components'
+import { usePost } from '../../../hooks'
+import { resizeImage } from '../PostList'
 
-const resizeImage = (url) =>
-  url.substr(0, url.indexOf('/upload/') + 8) +
-  `w_500,h_150,c_scale` +
-  url.substring(url.indexOf('/sickfits/'))
 export const BlogPost = () => {
   const { postId } = useParams()
   const postQuery = usePost(postId)
@@ -21,7 +18,7 @@ export const BlogPost = () => {
         <div>
           <h2>{postQuery.data.title}</h2>
           <p>{postQuery.data.body}</p>
-          <Image src={resizeImage(postQuery.data.image)}></Image>
+          <Image src={resizeImage(postQuery.data.image, 500, 150)}></Image>
         </div>
       )}
     </>

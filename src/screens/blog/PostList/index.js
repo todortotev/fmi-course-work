@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { usePosts, prefetchPost } from '../../../hooks'
 
-const resizeImage = (url) =>
+export const resizeImage = (url, width, height) =>
   url.substr(0, url.indexOf('/upload/') + 8) +
-  `w_400,h_200,c_scale` +
+  `w_${width},h_${height},c_scale` +
   url.substring(url.indexOf('/sickfits/'))
 
 export const PostList = () => {
@@ -31,13 +31,13 @@ export const PostList = () => {
                   prefetchPost(post.id)
                 }}
               >
-                <ImageBox>
-                  <img src={resizeImage(post.image)} />
-                </ImageBox>
-                <Content>
+                <div>
+                  <img src={resizeImage(post.image, 400, 200)} />
+                </div>
+                <div>
                   <h2>{post.title}</h2>
                   <p>{post.body}</p>
-                </Content>
+                </div>
               </Card>
             </>
           ))
@@ -82,5 +82,3 @@ const Card = styled.div`
     }
   }
 `
-const ImageBox = styled.div``
-const Content = styled.div``
