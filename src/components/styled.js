@@ -10,6 +10,10 @@ export const SidebarStyles = styled.div`
   width: 175px;
   border-right: 1px solid black;
   padding: 1rem;
+
+  @media (max-width: 960px) {
+    width: 90px;
+  }
 `
 
 export const Main = styled.div`
